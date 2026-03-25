@@ -1,0 +1,26 @@
+{
+  "name": "in-the-loop",
+  "version": "0.1.0",
+  "description": "Stay engaged while Claude Code works — contextual quiz questions, tips, and facts about your current task",
+  "type": "module",
+  "main": "dist/src/hooks/on-stop.js",
+  "bin": {
+    "in-the-loop": "dist/src/bin.js"
+  },
+  "scripts": {
+    "prepare": "tsc",
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "test": "node --test dist/tests/*.test.js"
+  },
+  "files": [
+    "dist/",
+    "README.md"
+  ],
+  "keywords": ["claude-code", "hooks", "learning", "quiz"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  }
+}
