@@ -1,0 +1,76 @@
+FUTURE FEATURES — in-the-loop
+==============================
+
+1. SESSION SCORE
+   Track how many questions the user answers correctly per session.
+   Show a running score (e.g., "4/7 correct") in the question box header.
+   Store scores in the session state file alongside stop_count and tool_use_count.
+
+2. QUESTION HISTORY
+   Save all generated questions to ~/.in-the-loop/history.json with timestamps,
+   session IDs, the context that triggered them, and whether the user got it right.
+   Let users review past questions with: in-the-loop history
+
+3. TOPIC FOCUS
+   Let users specify topics they want to learn about (e.g., "git", "typescript",
+   "security", "testing"). The system prompt would steer question generation
+   toward those topics when relevant to the current work.
+   Config: in-the-loop config --topics "git,security,testing"
+
+4. INTERACTIVE ANSWERS
+   Instead of showing the answer immediately, let the user pick A/B/C/D before
+   revealing the correct answer. Use the hook's decision field to pause Claude
+   while the user thinks, then resume after they respond.
+
+5. SPACED REPETITION
+   Track which concepts the user gets wrong and resurface them later at
+   increasing intervals. Questions the user consistently gets right fade out.
+   Builds a personalized knowledge profile over time.
+
+6. STREAK TRACKING
+   Track consecutive correct answers across sessions. Show the current streak
+   in the question header. Reset on a wrong answer. Encourage consistency
+   without being punishing.
+
+7. DIFFICULTY AUTO-ADJUST
+   Start at intermediate and automatically shift difficulty based on the user's
+   accuracy. If they're getting 90%+ right, bump to advanced. Below 50%, drop
+   to beginner. Removes the need to manually configure difficulty.
+
+8. QUESTION CATEGORIES
+   Tag questions by category (e.g., "shell", "file-system", "git", "security",
+   "architecture", "testing"). Show category breakdown in session summaries.
+   Let users filter history by category.
+
+9. SESSION SUMMARY
+   At the end of a session (or on demand), show a summary: number of questions,
+   accuracy, topics covered, weakest areas. Could be triggered with:
+   in-the-loop summary
+
+10. TEAM MODE
+    Share anonymized question performance across a team to identify common
+    knowledge gaps. Could feed into team learning goals or lunch-and-learn
+    topic selection.
+
+11. CUSTOM QUESTION PACKS
+    Let users or teams create their own question packs (JSON files) for
+    project-specific or domain-specific knowledge. Load them alongside
+    AI-generated questions. Useful for onboarding new team members.
+
+12. EXPORT TO FLASHCARDS
+    Export question history to Anki or other flashcard formats so users can
+    review outside of their coding sessions.
+
+13. COOLDOWN TIMER
+    Add a configurable minimum time between mid-task questions (e.g., no more
+    than one question per 2 minutes) to prevent clustering when Claude does
+    many tool uses in quick succession.
+
+14. LANGUAGE/FRAMEWORK AWARENESS
+    Detect the project's language and framework from package.json, Cargo.toml,
+    go.mod, etc. Use this to generate more targeted questions about the specific
+    ecosystem rather than generic programming concepts.
+
+15. QUESTION QUALITY FEEDBACK
+    Let users rate questions (thumbs up/down) to improve the system prompt over
+    time. Track which prompt variations produce the best-rated questions.
