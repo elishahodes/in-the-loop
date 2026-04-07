@@ -1,0 +1,10 @@
+{
+  "name": "in-the-loop",
+  "version": "0.1.0",
+  "description": "Stay engaged while Claude Code works — contextual quiz questions about the code being written",
+  "author": {
+    "name": "Elisha"
+  },
+  "keywords": ["claude-code", "hooks", "learning", "quiz"],
+  "license": "MIT"
+}

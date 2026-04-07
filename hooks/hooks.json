@@ -1,0 +1,28 @@
+{
+  "description": "In-the-loop quiz hooks — questions on Stop and after Edit/Write/Bash",
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/dist/src/hooks/on-stop.js",
+            "timeout": 20
+          }
+        ]
+      }
+    ],
+    "PostToolUse": [
+      {
+        "matcher": "Edit|Write|Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node ${CLAUDE_PLUGIN_ROOT}/dist/src/hooks/on-tool-use.js",
+            "timeout": 15
+          }
+        ]
+      }
+    ]
+  }
+}

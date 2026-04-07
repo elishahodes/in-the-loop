@@ -1,6 +1,6 @@
 # in-the-loop
 
-Stay engaged while Claude Code works. **in-the-loop** is a Claude Code hook that presents contextual quiz questions about the code being written — both when Claude stops and *while it's actively working*.
+Stay engaged while Claude Code works. **in-the-loop** is a Claude Code plugin that presents contextual quiz questions about the code being written — both when Claude stops and *while it's actively working*.
 
 ## Why
 
@@ -19,32 +19,26 @@ Questions appear as system messages in the Claude Code UI — they don't block o
 
 ## Install
 
-```bash
-npm install -g in-the-loop
-in-the-loop setup
+From a Claude Code session:
+
+```
+/plugin install from /path/to/in-the-loop
 ```
 
-`setup` does two things:
-1. Creates `~/.in-the-loop/` with a default config
-2. Adds Stop and PostToolUse hooks to `~/.claude/settings.json`
+Or once published to a marketplace:
 
-## Uninstall
-
-```bash
-in-the-loop uninstall
 ```
-
-Removes all hooks from `~/.claude/settings.json`. The `~/.in-the-loop/` directory is left intact.
+/plugin install in-the-loop
+```
 
 ## Configuration
 
-```bash
-# View current config
-in-the-loop config
+Use the built-in skill to view or change settings:
 
-# Set options
-in-the-loop config --frequency <every|often|sometimes|rarely>
-in-the-loop config --difficulty <beginner|intermediate|advanced>
+```
+/in-the-loop:config
+/in-the-loop:config --frequency often
+/in-the-loop:config --difficulty advanced
 ```
 
 ### Frequency
@@ -91,8 +85,14 @@ After Claude runs `git checkout -b feature/auth`:
 ## Project Structure
 
 ```
+.claude-plugin/
+  plugin.json                     Plugin manifest
+hooks/
+  hooks.json                      Hook definitions (Stop + PostToolUse)
+skills/
+  config/
+    SKILL.md                      /in-the-loop:config command
 src/
-  bin.ts                          CLI entry point
   types.ts                        TypeScript interfaces
   hooks/
     on-stop.ts                    Stop hook handler
@@ -105,15 +105,14 @@ src/
     transcript-reader.ts          Claude Code transcript parsing
   prompts/
     question-system-prompt.ts     System prompts by difficulty/mode
-  cli/
-    setup.ts                      Hook install/uninstall
-    config.ts                     Config CLI
 tests/
   frequency-controller.test.ts
   question-formatter.test.ts
   question-generator.test.ts
   transcript-reader.test.ts
 ```
+
+State is stored in `~/.in-the-loop/` (config + per-session counters).
 
 ## Development
 
